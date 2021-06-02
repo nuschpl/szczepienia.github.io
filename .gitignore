@@ -11,3 +11,4 @@ test
 *.log
 filtered.html
 all.html
+Gemfile.lock
