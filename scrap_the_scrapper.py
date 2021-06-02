@@ -46,7 +46,7 @@ class ScrapTheScrapper(object):
              filter+=m.group(0)
              #Kolumna Godz
              slots = re.finditer(r'<td\s+class=".*?times.*?".*?>(?P<ss>'+
-                                '(?:<div class="slot-count">\(terminów: <strong>(?P<term_cnt>\d+)</strong>\)</div>)|'+
+                                '(?:<div class="slot-count">\(terminów: <strong>(?P<term_cnt>\d+)</strong>\)</div>.*?<div class="extended-times">(?P<multi2>.*?)</div>)|'+
                                 '(?P<multi>(?:\d+:\d\d)(?:<br/>\d+:\d\d)+)|'+
                                 '(?P<single>(?:\d+:\d\d)))'+
                              '.*?</td>', m.group('Godz'), re.MULTILINE|re.DOTALL)
@@ -62,7 +62,8 @@ class ScrapTheScrapper(object):
                single = slot.group('single')
                if ext_terms:
                  terminow = "%s terminów:" % (ext_terms)
-               elif multi:
+                 multi = slot.group('multi2').strip()
+               if multi:
                  terminow = "terminy: %r" % (','.join(multi.split("<br/>")))
                else:
                  terminow = "1 termin: " + single
