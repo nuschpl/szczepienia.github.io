@@ -9,3 +9,5 @@ cities/*
 output
 test
 *.log
+filtered.html
+all.html
