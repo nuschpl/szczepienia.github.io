@@ -17,7 +17,7 @@ class ScrapTheScrapper(object):
     self.loop()
 
   def sync(self):
-    os.system("git pull https://github.com/szczepienia/szczepienia.github.io.git")
+    os.system("git pull -ff https://github.com/szczepienia/szczepienia.github.io.git")
     print("sync ok")
 
   def load(self,):
